@@ -14,12 +14,7 @@
 
 @end
 
-@implementation WETouchableView {
-	BOOL touchForwardingDisabled;
-	id <WETouchableViewDelegate> delegate;
-	NSArray *passthroughViews;
-	BOOL testHits;
-}
+@implementation WETouchableView
 
 @synthesize touchForwardingDisabled, delegate, passthroughViews;
 

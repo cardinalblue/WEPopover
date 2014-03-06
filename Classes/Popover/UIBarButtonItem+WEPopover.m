@@ -13,33 +13,39 @@
 
 - (CGRect)frameInView:(UIView *)v {
 	
-	UIView *theView = self.customView;
-	if (!theView.superview && [self respondsToSelector:@selector(view)]) {
-		theView = [self performSelector:@selector(view)];
+	BOOL hasCustomView = (self.customView != nil);
+	
+	if (!hasCustomView) {
+		UIView *tempView = [[UIView alloc] initWithFrame:CGRectZero];
+		self.customView = tempView;
+		[tempView release];	
 	}
 	
-	UIView *parentView = theView.superview;
-	NSArray *subviews = parentView.subviews;
+	UIView *parentView = self.customView.superview;
+	NSUInteger indexOfView = [parentView.subviews indexOfObject:self.customView];
 	
-	NSUInteger indexOfView = [subviews indexOfObject:theView];
-	NSUInteger subviewCount = subviews.count;
-	
-	if (subviewCount > 0 && indexOfView != NSNotFound) {
-		UIView *button = [parentView.subviews objectAtIndex:indexOfView];
-		return [button convertRect:button.bounds toView:v];
-	} else {
-		return CGRectZero;
+	if (!hasCustomView) {
+		self.customView = nil;
 	}
+	UIView *button = [parentView.subviews objectAtIndex:indexOfView];
+	return [parentView convertRect:button.frame toView:v];
 }
 
 - (UIView *)superview {
 	
-	UIView *theView = self.customView;
-	if (!theView && [self respondsToSelector:@selector(view)]) {
-		theView = [self performSelector:@selector(view)];
+	BOOL hasCustomView = (self.customView != nil);
+	
+	if (!hasCustomView) {
+		UIView *tempView = [[UIView alloc] initWithFrame:CGRectZero];
+		self.customView = tempView;
+		[tempView release];	
 	}
 	
-	UIView *parentView = theView.superview;
+	UIView *parentView = self.customView.superview;
+	
+	if (!hasCustomView) {
+		self.customView = nil;
+	}
 	return parentView;
 }
 
