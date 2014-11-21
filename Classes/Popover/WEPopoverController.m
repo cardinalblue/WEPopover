@@ -213,15 +213,13 @@
 
 @implementation WEPopoverController(Private)
 
-- (UIView *)keyView {
-	UIWindow *w = [[UIApplication sharedApplication] keyWindow];
-	if (w.subviews.count > 0) {
-        // yyjim: change to lastObject to ensure the popover displays on top of any other views
-        // return [w.subviews objectAtIndex:0];
-		return [w.subviews lastObject];
-	} else {
-		return w;
-	}
+- (UIView *)keyView
+{
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+    if (!window) {
+        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    }
+    return window;
 }
 
 - (void)setView:(UIView *)v {
