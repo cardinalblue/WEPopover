@@ -76,6 +76,12 @@
 	[self updateBackgroundPassthroughViews];
 }
 
+- (void)setDismissOnPassthroughTouches:(BOOL)dismissOnPassthroughTouches
+{
+    _dismissOnPassthroughTouches = dismissOnPassthroughTouches;
+    backgroundView.dismissOnPassthroughTouches = dismissOnPassthroughTouches;
+}
+
 - (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)theContext {
 	
 	if ([animationID isEqual:@"FadeIn"]) {
@@ -147,6 +153,7 @@
 									   UIViewAutoresizingFlexibleBottomMargin);
 	backgroundView.backgroundColor = [UIColor clearColor];
 	backgroundView.delegate = self;
+    backgroundView.dismissOnPassthroughTouches = self.dismissOnPassthroughTouches;
 	
 	[keyView addSubview:backgroundView];
 	

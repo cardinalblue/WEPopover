@@ -46,6 +46,7 @@
 @property (nonatomic, retain) WEPopoverContainerViewProperties *containerViewProperties;
 @property (nonatomic, retain) id <NSObject> context;
 @property (nonatomic, copy) NSArray *passthroughViews;
+@property (nonatomic, assign) BOOL dismissOnPassthroughTouches;
 
 - (id)initWithContentViewController:(UIViewController *)theContentViewController;
 

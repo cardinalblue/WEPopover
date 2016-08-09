@@ -38,6 +38,11 @@
 			testHits = NO;
 			
 			if ([self isPassthroughView:superHitView]) {
+                if (self.dismissOnPassthroughTouches) {
+                    [self.delegate viewWasTouched: self];
+                    return nil;
+                }
+                
 				hitView = superHitView;
 			}
 		}
