@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'WEPopover'
-  s.version  = '0.1.4-cb'
+  s.version  = '0.1.5-cb'
   s.license  = 'MIT'
   s.summary  = 'Generic popover implementation for iOS with same API as the UIPopoverController.'
   s.description  =  'Generic popover implementation for iOS with same API as the UIPopoverController for the iPad, but configurable with custom background and available for iPhone as well.'
