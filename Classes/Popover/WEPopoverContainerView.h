@@ -46,6 +46,10 @@
 @property(nonatomic, assign) UIEdgeInsets bgCapInsets;
 @property(nonatomic, assign) CGFloat arrowMargin;
 
+@property(nonatomic, copy) void(^drawRectBlock)(CGContextRef context,
+                                                UIPopoverArrowDirection arrowDirection,
+                                                UIImage *bgImage, CGRect bgRect,
+                                                UIImage *arrowImage, CGRect arrowRect);
 @end
 
 @class WEPopoverContainerView;

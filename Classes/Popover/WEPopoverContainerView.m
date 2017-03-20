@@ -31,6 +31,7 @@
 	self.downArrowImageName = nil;
 	self.leftArrowImageName = nil;
 	self.rightArrowImageName = nil;
+    self.drawRectBlock = nil;
 	[super dealloc];
 }
 
@@ -99,8 +100,13 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 }
 
 - (void)drawRect:(CGRect)rect {
-	[bgImage drawInRect:bgRect blendMode:kCGBlendModeNormal alpha:1.0];
-	[arrowImage drawInRect:arrowRect blendMode:kCGBlendModeNormal alpha:1.0]; 
+    if (properties.drawRectBlock) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        properties.drawRectBlock(context, arrowDirection, bgImage, bgRect, arrowImage, arrowRect);
+    } else {
+        [bgImage drawInRect:bgRect blendMode:kCGBlendModeNormal alpha:1.0];
+        [arrowImage drawInRect:arrowRect blendMode:kCGBlendModeNormal alpha:1.0];
+    }
 }
 
 - (void)updatePositionWithAnchorRect:(CGRect)anchorRect 
